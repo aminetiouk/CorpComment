@@ -60,3 +60,10 @@ button {
   justify-content: center;
   height: 850px;
 }
+
+.app {
+  width: 715px;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+}
