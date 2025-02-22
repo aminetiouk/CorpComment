@@ -197,3 +197,44 @@ button {
     background-color: rgba(255, 255, 255, 0.05);
   }
 }
+
+// SUBMIT BTN
+.submit-btn {
+  color: #161921;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 4px 16px 9px;
+  border-radius: 500px;
+  font-weight: 600;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all .2s;
+  backface-visibility: hidden;
+  transform: translateY(-2px) translateZ(0) rotate(0);
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px) translateZ(0) scale(1.15);
+  }
+
+  &:active {
+    transform: translateY(-2px) translateZ(0) scale(1.07);
+  }
+
+  &:hover &__text {
+    transform: translateY(2px) translateZ(0);
+  }
+
+  &__text {
+    display: block;
+    transition: all .2s;
+    backface-visibility: hidden;
+    transform: translateY(2px) translateZ(0) rotate(0);
+
+    &::selection {
+      color: rgba(0, 0, 0, 0.85);
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
