@@ -1,0 +1,24 @@
+{
+  "name": "corpcomment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "compile": "sass --watch --no-source-map main.scss styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aminetiouk/CorpComment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aminetiouk/CorpComment/issues"
+  },
+  "homepage": "https://github.com/aminetiouk/CorpComment#readme",
+  "dependencies": {
+    "sass": "^1.85.0"
+  }
+}
