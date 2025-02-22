@@ -73,3 +73,28 @@ button {
   border-radius: 6px;
   overflow: hidden;
 }
+
+// HEADER
+.header {
+  height: 277px;
+  background-color: #121618;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 555;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  box-shadow: rgba(12, 17, 21, .5) 0px 0px 50px;
+  padding-bottom: 3px;
+
+  &__pattern {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+
+    &::selection {
+      background-color: initial;
+    }
+  }
+}
