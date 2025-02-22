@@ -6,7 +6,8 @@
   box-sizing: border-box;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -39,4 +40,23 @@ button {
 
 .u-transparent {
   color: rgba(255, 255, 255, 0.8);
+}
+
+.body {
+  background-image: linear-gradient(200deg, #654a86, #534292);
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scrollbar-width: none;
+}
+.body::-webkit-scrollbar {
+  display: none;
+}
+.body__container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 850px;
 }
