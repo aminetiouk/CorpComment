@@ -156,3 +156,14 @@ button {
   padding: 0 20px;
   margin-top: -8px;
 }
+
+.counter {
+  font-weight: 500;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+.counter::selection, .counter > *::selection {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.05);
+}
