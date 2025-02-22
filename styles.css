@@ -201,3 +201,25 @@ button {
   color: rgba(0, 0, 0, 0.85);
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.feedbacks {
+  height: 573px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #f7f8f9;
+  scrollbar-color: #979ca0 #dbdfe4;
+  scrollbar-width: thin;
+}
+.feedbacks::-webkit-scrollbar {
+  background-color: #dbdfe4;
+}
+.feedbacks::-webkit-scrollbar-track {
+  background-color: #dbdfe4;
+}
+.feedbacks::-webkit-scrollbar-thumb {
+  background-color: #979ca0;
+  transition: all 0.2s;
+}
+.feedbacks::-webkit-scrollbar-thumb:hover {
+  background-color: #787c80;
+}
