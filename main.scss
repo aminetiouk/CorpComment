@@ -29,3 +29,16 @@ button {
   outline: initial;
   background-color: initial;
 }
+
+// UTILITIES
+.u-bold {
+  font-weight: 600;
+}
+
+.u-medium {
+  font-weight: 500;
+}
+
+.u-transparent {
+  color: rgba(255, 255, 255, .8);
+}
