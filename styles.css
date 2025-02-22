@@ -89,3 +89,70 @@ button {
 .header__pattern::selection {
   background-color: initial;
 }
+
+.form {
+  margin-top: 20px;
+  height: 123px;
+  width: 470px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+.form:hover, .form:focus {
+  background-color: rgba(255, 255, 255, 0.055);
+}
+.form:focus-within {
+  outline: 2px solid rgba(255, 255, 255, 0.125);
+}
+.form--invalid {
+  box-shadow: 0 0 0 2px #8a3d2c;
+}
+.form--valid {
+  box-shadow: 0 0 0 2px #2c8a5e;
+}
+.form__textarea {
+  width: 100%;
+  height: 85px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  padding: 15px 20px;
+  caret-color: rgba(255, 255, 255, 0.25);
+}
+.form__textarea::selection {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.form__textarea::placeholder {
+  opacity: 0;
+}
+.form__textarea:focus + .form__label, .form__textarea:not(:placeholder-shown) + .form__label {
+  opacity: 0;
+}
+.form__label {
+  position: relative;
+  top: 13.5px;
+  left: 20px;
+  color: #fff;
+  opacity: 0.42;
+  pointer-events: none;
+}
+.form__label::selection, .form__label *::selection {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.form__icon {
+  font-size: 12px;
+  margin-left: 4px;
+  color: #fff;
+  opacity: 0.5;
+}
+.form__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: -8px;
+}
