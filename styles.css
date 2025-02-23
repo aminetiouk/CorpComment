@@ -352,3 +352,13 @@ button {
   font-size: 11px;
   margin-top: -1px;
 }
+
+.hashtags {
+  position: absolute;
+  right: -137px;
+  top: 0px;
+}
+.hashtags__item {
+  max-width: max-content;
+  margin-bottom: 11px;
+}
