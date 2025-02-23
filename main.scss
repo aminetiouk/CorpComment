@@ -468,3 +468,26 @@ button {
   left: -225px;
   bottom: 174px;
 }
+
+// COPYRIGHT
+.copyright {
+  color: #A6ADB5;
+  font-size: 11px;
+
+  & *::selection {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  &__text {
+    opacity: .4;
+  }
+  &__link {
+    text-decoration: underline;
+  }
+  &__icon {
+    font-size: 10px;
+    opacity: .5;
+    margin-right: 4px;
+    margin-left: 2px;
+  }
+}
