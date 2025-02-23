@@ -1,7 +1,7 @@
 // RESET
 *,
-::after,
-::before {
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -40,8 +40,22 @@ button {
   font-weight: 500;
 }
 
+.u-italic {
+  font-style: italic;
+}
+
 .u-transparent {
   color: rgba(255, 255, 255, 0.8);
+}
+
+// KEYFRAMES
+@keyframes intro {
+  0% {
+    transform: scale(.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 // BASE
@@ -122,6 +136,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 555;
   backface-visibility: hidden;
@@ -205,7 +220,7 @@ button {
   }
 
   &__label {
-    position: relative;
+    position: absolute;
     top: 13.5px;
     left: 20px;
     color: #fff;
@@ -305,7 +320,7 @@ button {
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
-    background-color: #dbdfe4;
+    width: 7px;
 
     &-track {
       background-color: #dbdfe4;
@@ -531,7 +546,8 @@ button {
   font-weight: 400;
   color: rgba(255, 255, 255, 0.6);
   padding: 7px 14px 9px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 500px;
   cursor: pointer;
   transition: all 0.2s;
 
@@ -571,22 +587,22 @@ button {
 
 // COPYRIGHT
 .copyright {
-  color: #A6ADB5;
+  color: #a6adb5;
   font-size: 11px;
 
   & *::selection {
     background-color: rgba(255, 255, 255, 0.1);
   }
-  
+
   &__text {
-    opacity: .4;
+    opacity: 0.4;
   }
   &__link {
     text-decoration: underline;
   }
   &__icon {
     font-size: 10px;
-    opacity: .5;
+    opacity: 0.5;
     margin-right: 4px;
     margin-left: 2px;
   }

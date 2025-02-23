@@ -1,6 +1,6 @@
 *,
-::after,
-::before {
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -38,10 +38,22 @@ button {
   font-weight: 500;
 }
 
+.u-italic {
+  font-style: italic;
+}
+
 .u-transparent {
   color: rgba(255, 255, 255, 0.8);
 }
 
+@keyframes intro {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .body {
   background-image: linear-gradient(200deg, #654a86, #534292);
   min-height: 100vh;
@@ -120,6 +132,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 555;
   backface-visibility: hidden;
@@ -190,7 +203,7 @@ button {
   opacity: 0;
 }
 .form__label {
-  position: relative;
+  position: absolute;
   top: 13.5px;
   left: 20px;
   color: #fff;
@@ -274,7 +287,7 @@ button {
   scrollbar-width: thin;
 }
 .feedbacks::-webkit-scrollbar {
-  background-color: #dbdfe4;
+  width: 7px;
 }
 .feedbacks::-webkit-scrollbar-track {
   background-color: #dbdfe4;
@@ -471,7 +484,8 @@ button {
   font-weight: 400;
   color: rgba(255, 255, 255, 0.6);
   padding: 7px 14px 9px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 500px;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -509,7 +523,7 @@ button {
 }
 
 .copyright {
-  color: #A6ADB5;
+  color: #a6adb5;
   font-size: 11px;
 }
 .copyright *::selection {
