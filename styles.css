@@ -362,3 +362,24 @@ button {
   max-width: max-content;
   margin-bottom: 11px;
 }
+
+.hashtag {
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 7px 14px 9px;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hashtag:hover, .hashtag:focus {
+  color: #fff;
+  transform: scale(1.11);
+}
+.hashtag:active {
+  transform: scale(1.06);
+}
+.hashtag::selection {
+  background-color: rgba(255, 255, 255, 0.1);
+}
