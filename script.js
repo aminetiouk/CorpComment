@@ -51,3 +51,70 @@ const renderFeedbackItem = feedbackItem => {
 
   textareaEl.addEventListener('input', inputHandler);
 })();
+
+// FORM COMPONENT
+(() => {
+  const showVisualIndicator = textCheck => {
+    const className = textCheck === 'valid' ? 'form--valid' : 'form--invalid';
+
+    //  show valid indicator
+    formEl.classList.add(className);
+    
+    // remove visual indicator
+    setTimeout(() => {
+      formEl.classList.add(className);
+    }, 2000);
+  };
+
+  const submitHandler = event => {
+    event.preventDefault();
+
+    const text = textareaEl.value;
+
+    if (text.includes('#') && text.length >= 5) {
+      showVisualIndicator('valid');
+    } else {
+      showVisualIndicator('invalid');
+      textareaEl.focus();
+      return;
+    }
+
+    const hashtag = text.split(' ').find(word => word.includes('#'));
+    const company = hashtag.substring(1);
+    const badgeLetter = company.substring(0, 1).toUpperCase();
+    const upvoteCount = 0;
+    const daysAgo = 0;
+
+    const feedbackItem = {
+      upvoteCount,
+      company,
+      badgeLetter,
+      daysAgo,
+      text,
+    };
+    renderFeedbackItem(feedbackItem);
+
+    fetch(`${BASE_API_URL}/feedbacks`, {
+      method: 'POST',
+      body: JSON.stringify(feedbackItem),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if (!response.ok) {
+        console.log('Something went wrong');
+        return;
+      }
+
+      console.log('Successfully submitted');
+    }).catch(error => console.log(error));
+
+    textareaEl.value = '';
+    submitBtnEl.blur();
+
+    counterEl.textContent = MAX_CHARS;
+  };
+
+  formEl.addEventListener('submit', submitHandler);
+})();
