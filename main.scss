@@ -568,8 +568,8 @@ button {
 .footer {
   position: absolute;
   transform: rotate(-90deg);
-  left: -225px;
-  bottom: 174px;
+  left: -125px;
+  bottom: 100px;
 
   @media (max-width: 1050px) {
     transform: initial;
@@ -588,7 +588,7 @@ button {
 // COPYRIGHT
 .copyright {
   color: #a6adb5;
-  font-size: 11px;
+  font-size: 1rem;
 
   & *::selection {
     background-color: rgba(255, 255, 255, 0.1);
