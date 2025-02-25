@@ -2,13 +2,12 @@
 const MAX_CHARS = 150;
 const BASE_API_URL = 'https://bytegrad.com/course-assets/js/1/api';
 
-const textareaEl = document.querySelector('.form_textarea');
+const textareaEl = document.querySelector('.form__textarea');
 const counterEl = document.querySelector('.counter');
 const formEl = document.querySelector('.form');
 const feedbackListEl = document.querySelector('.feedbacks');
 const submitBtnEl = document.querySelector('.submit-btn');
 const hashtagListEl = document.querySelector('.hashtags');
-
 
 const renderFeedbackItem = feedbackItem => {
   // new feedback item HTML
@@ -59,10 +58,10 @@ const renderFeedbackItem = feedbackItem => {
 
     //  show valid indicator
     formEl.classList.add(className);
-    
+
     // remove visual indicator
     setTimeout(() => {
-      formEl.classList.add(className);
+      formEl.classList.remove(className);
     }, 2000);
   };
 
@@ -86,11 +85,11 @@ const renderFeedbackItem = feedbackItem => {
     const daysAgo = 0;
 
     const feedbackItem = {
-      upvoteCount,
-      company,
-      badgeLetter,
-      daysAgo,
-      text,
+      upvoteCount: upvoteCount,
+      company: company,
+      badgeLetter: badgeLetter,
+      daysAgo: daysAgo,
+      text: text
     };
     renderFeedbackItem(feedbackItem);
 
@@ -101,14 +100,16 @@ const renderFeedbackItem = feedbackItem => {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       }
-    }).then(response => {
-      if (!response.ok) {
-        console.log('Something went wrong');
-        return;
-      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          console.log('Something went wrong');
+          return;
+        }
 
-      console.log('Successfully submitted');
-    }).catch(error => console.log(error));
+        console.log('Successfully submitted');
+      })
+      .catch(error => console.log(error));
 
     textareaEl.value = '';
     submitBtnEl.blur();
@@ -154,11 +155,17 @@ const renderFeedbackItem = feedbackItem => {
 
     if (clickedEl.className === 'hashtags') return;
 
-    const companyNameFromHashtag = clickedEl.textContent.substring(1).toLowerCase().trim();
+    const companyNameFromHashtag = clickedEl.textContent
+      .substring(1)
+      .toLowerCase()
+      .trim();
 
     feedbackListEl.childNodes.forEach(childNode => {
       if (childNode.nodeType === 3) return;
-      const companyNameFromFeedbackItem = childNode.querySelector('.feedback__company').textContent.toLowerCase().trim();
+      const companyNameFromFeedbackItem = childNode
+        .querySelector('.feedback__company')
+        .textContent.toLowerCase()
+        .trim();
 
       if (companyNameFromHashtag !== companyNameFromFeedbackItem) {
         childNode.remove();
