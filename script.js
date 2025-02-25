@@ -146,3 +146,25 @@ const renderFeedbackItem = feedbackItem => {
       feedbackListEl.textContent = `Failed to fetch feedback items. Error message: ${error.message}`;
     });
 })();
+
+// HASHTAG LIST COMPONENT
+(() => {
+  const clickHandler = event => {
+    const clickedEl = event.target;
+
+    if (clickedEl.className === 'hashtags') return;
+
+    const companyNameFromHashtag = clickedEl.textContent.substring(1).toLowerCase().trim();
+
+    feedbackListEl.childNodes.forEach(childNode => {
+      if (childNode.nodeType === 3) return;
+      const companyNameFromFeedbackItem = childNode.querySelector('.feedback__company').textContent.toLowerCase().trim();
+
+      if (companyNameFromHashtag !== companyNameFromFeedbackItem) {
+        childNode.remove();
+      }
+    });
+  };
+
+  hashtagListEl.addEventListener('click', clickHandler);
+})();
