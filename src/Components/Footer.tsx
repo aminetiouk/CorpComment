@@ -1,5 +1,14 @@
 export default function Footer() {
   return (
-    <div className="footer">Footer</div>
-  )
+    <footer className="footer">
+      <small>
+        <p>
+          &copy; Copyright by{' '}
+          <a href="" target="_blank">
+            amine
+          </a>
+        </p>
+      </small>
+    </footer>
+  );
 }
