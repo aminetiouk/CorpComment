@@ -4,19 +4,20 @@ const CHARACTER_LIMIT = 150;
 export default function FeedbackForm() {
   const [text, setText] = useState('');
   const charCount = CHARACTER_LIMIT - text.length;
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newText = event.target.value;
+    if (newText.length > CHARACTER_LIMIT) {
+      return;
+    }
+    setText(newText);
+  };
   return (
     <form>
       <textarea
         id="feedback-textarea"
         spellCheck={false}
         value={text}
-        onChange={(event) => {
-          const newText = event.target.value;
-          if (newText.length > CHARACTER_LIMIT) {
-            return;
-          }
-          setText(newText)
-        }}
+        onChange={handleChange}
       ></textarea>
       <label htmlFor="feedback-textarea">
         Enter your feedback here, remember to #hashtag the company
