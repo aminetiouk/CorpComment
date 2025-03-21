@@ -64,3 +64,11 @@ body {
 .body::-webkit-scrollbar {
   display: none;
 }
+
+/* APP */
+.app {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 850px;
+}
