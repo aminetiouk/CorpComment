@@ -121,3 +121,19 @@ h1 *::selection {
   color: rgba(255, 255, 255, 0.85);
   background-color: rgba(255, 255, 255, 0.05);
 }
+
+/* LOGO */
+.logo {
+  height: 27.5px;
+}
+
+.logo::selection {
+  background-color: initial;
+}
+
+.logo img {
+  position: relative;
+  z-index: 1;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
