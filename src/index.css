@@ -222,3 +222,17 @@ form div:last-child {
   padding: 0 20px;
   margin-top: -8px;
 }
+
+/* COUNTER */
+form div:last-child p {
+  font-weight: 500;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+form div:last-child p::selection,
+form div:last-child p > *::selection {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.05);
+}
