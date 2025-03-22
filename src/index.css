@@ -469,3 +469,15 @@ form button span::selection {
   font-size: 11px;
   margin-top: -1px;
 }
+
+/* HASHTAGS */
+.hashtags {
+  position: absolute;
+  right: -137px;
+  top: 0px;
+}
+
+.hashtags li {
+  max-width: max-content;
+  margin-bottom: 11px;
+}
