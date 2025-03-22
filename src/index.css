@@ -236,3 +236,44 @@ form div:last-child p > *::selection {
   color: rgba(255, 255, 255, 0.85);
   background-color: rgba(255, 255, 255, 0.05);
 }
+
+/* SUBMIT BTN */
+form button {
+  color: #161921;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 4px 16px 9px;
+  border-radius: 500px;
+  font-weight: 600;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  backface-visibility: hidden;
+  transform: translateY(-2px) translateZ(0) rotate(0);
+}
+
+form button:hover,
+form button:focus {
+  transform: translateY(-2px) translateZ(0) scale(1.15);
+}
+
+form button:active {
+  transform: translateY(-2px) translateZ(0) scale(1.07);
+}
+
+form button:hover span {
+  transform: translateY(2px) translateZ(0);
+}
+
+form button span {
+  display: block;
+  transition: all 0.2s;
+  backface-visibility: hidden;
+  transform: translateY(2px) translateZ(0) rotate(0);
+}
+
+form button span::selection {
+  color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.1);
+}
