@@ -516,3 +516,21 @@ form button span::selection {
   left: -225px;
   bottom: 174px;
 }
+
+/* COPYRIGHT */
+.footer > small {
+  color: #a6adb5;
+  font-size: 11px;
+}
+
+.footer > small *::selection {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer > small > p {
+  opacity: 0.4;
+}
+
+.footer > small > p > a {
+  text-decoration: underline;
+}
