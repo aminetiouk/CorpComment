@@ -137,3 +137,88 @@ h1 *::selection {
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+
+/* FORM */
+.form {
+  margin-top: 20px;
+  height: 123px;
+  height: 123;
+  width: 470px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.form:hover,
+.form:focus {
+  background-color: rgba(255, 255, 255, 0.055);
+}
+
+.form:focus-within {
+  outline: 2px solid rgba(255, 255, 255, 0.125);
+}
+
+.form--invalid {
+  box-shadow: 0 0 0 2px #8a3d2c;
+}
+.form--valid {
+  box-shadow: 0 0 0 2px #2c8a5e;
+}
+
+textarea {
+  width: 100%;
+  height: 85px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  padding: 15px 20px;
+  caret-color: rgba(255, 255, 255, 0.25);
+}
+
+textarea::selection {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+textarea::placeholder {
+  opacity: 0;
+}
+
+textarea:focus + label,
+textarea:not(:placeholder-shown) + label {
+  opacity: 0;
+}
+
+label {
+  position: absolute;
+  top: 13.5px;
+  left: 20px;
+  color: #fff;
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+label::selection,
+label *::selection {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+label svg {
+  margin-bottom: -3px;
+  margin-left: 4px;
+  color: #fff;
+  opacity: 0.5;
+}
+
+form div:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: -8px;
+}
