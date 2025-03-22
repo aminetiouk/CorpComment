@@ -508,3 +508,11 @@ form button span::selection {
 .hashtags li button::selection {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+/* FOOTER */
+.footer {
+  position: absolute;
+  transform: rotate(-90deg);
+  left: -225px;
+  bottom: 174px;
+}
