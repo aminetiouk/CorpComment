@@ -425,3 +425,47 @@ form button span::selection {
   margin-left: auto;
   transition: all 0.2s;
 }
+
+/* UPVOTE BTN */
+.feedback > button {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback > button:hover {
+  background-color: #f3f6f8;
+}
+
+.feedback > button:hover svg,
+.feedback > button:hover span {
+  color: #784a86;
+}
+
+.feedback > button:disabled svg {
+  display: none;
+}
+
+.feedback > button:disabled {
+  pointer-events: none;
+}
+
+.feedback > button svg {
+  color: #d7dbe2;
+  width: 50px;
+  height: 20px;
+  display: block;
+  transition: all 0.2s;
+}
+
+.feedback > button span {
+  color: #6c6f76;
+  font-size: 11px;
+  margin-top: -1px;
+}
