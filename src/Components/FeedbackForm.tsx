@@ -11,8 +11,9 @@ export default function FeedbackForm() {
     }
     setText(newText);
   };
+
   return (
-    <form>
+    <form className="form">
       <textarea
         id="feedback-textarea"
         spellCheck={false}
