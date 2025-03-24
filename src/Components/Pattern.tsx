@@ -1,5 +1,9 @@
 export default function Pattern() {
   return (
-    <div>Pattern</div>
-  )
+    <img
+      src="https://bytegrad.com/course-assets/js/1/pattern.svg"
+      alt="pattern"
+      className="pattern"
+    />
+  );
 }
