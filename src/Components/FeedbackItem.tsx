@@ -1,19 +1,11 @@
 import { BiSolidUpArrow } from 'react-icons/bi';
+import { TFeedback } from '../lib/type';
 
-export type Feedback = {
-  id: number;
-  company: string;
-  badgeLetter: string;
-  upvoteCount: number;
-  text: string;
-  daysAgo: number;
+type FeedbackItemProps = {
+  feedbackItem: TFeedback;
 };
 
-type FeedbackItem = {
-  feedbackItem: Feedback;
-};
-
-export default function FeedbackItem({ feedbackItem }: FeedbackItem) {
+export default function FeedbackItem({ feedbackItem }: FeedbackItemProps) {
   return (
     <li className="feedback">
       <button>
