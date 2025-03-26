@@ -1,7 +1,11 @@
 import { useState } from 'react';
 const CHARACTER_LIMIT = 150;
 
-export default function FeedbackForm() {
+type onAddToListProps = {
+  onAddToList: (text: string) => void;
+};
+
+export default function FeedbackForm({ onAddToList }: onAddToListProps) {
   const [text, setText] = useState('');
   const charCount = CHARACTER_LIMIT - text.length;
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -12,8 +16,13 @@ export default function FeedbackForm() {
     setText(newText);
   };
 
+  const handleAddToList = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onAddToList(text);
+  };
+
   return (
-    <form className="form">
+    <form onSubmit={handleAddToList} className="form">
       <textarea
         id="feedback-textarea"
         spellCheck={false}
