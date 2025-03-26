@@ -1,35 +1,19 @@
-import { useEffect, useState } from 'react';
-import FeedbackItem, {Feedback} from './FeedbackItem';
+import FeedbackItem from './FeedbackItem';
 import SkeletonLoader from './SkeletonLoader';
 import ErrorMessage from './ErrorMessage';
+import { TFeedback } from '../lib/type';
 
-export default function FeedbackList() {
-  const [feedbackItems, setFeedbackItem] = useState<Feedback[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
+type FeedbackListProps = {
+  feedbackItems: TFeedback[];
+  isLoading: boolean;
+  errorMessage: string;
+};
 
-      try {
-
-        const response = await fetch('https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks');
-  
-        if (!response.ok) {
-          throw new Error();
-        }
-  
-        const data = await response.json();
-        setFeedbackItem(data.feedbacks)
-      } catch (error) {
-        console.error("Error fetching feedbacks:", error);
-        setErrorMessage(`⚠️ Failed to load data`)
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
+export default function FeedbackList({
+  feedbackItems,
+  isLoading,
+  errorMessage
+}: FeedbackListProps) {
   return (
     <ol className="feedback-list">
       {isLoading && <SkeletonLoader />}
