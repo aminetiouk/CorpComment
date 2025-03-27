@@ -1,5 +1,5 @@
 import React from "react";
-import "./SkeletonLoader.css";
+import "../styles/SkeletonLoader.css";
 
 export default function SkeletonLoader({ count = 5 }) {
   return (
