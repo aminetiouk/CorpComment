@@ -1,13 +1,17 @@
 import { BiSolidUpArrow } from 'react-icons/bi';
 import { TFeedback } from '../../lib/type';
+import { useState } from 'react';
 
 type FeedbackItemProps = {
   feedbackItem: TFeedback;
 };
 
 export default function FeedbackItem({ feedbackItem }: FeedbackItemProps) {
+
+  const [open, setOpen] = useState(false);
+
   return (
-    <li className="feedback">
+    <li onClick={() => setOpen((prev) => (!prev))} className={`feedback ${open ? "feedback--expand" : ""}`}>
       <button>
         <BiSolidUpArrow />
         <span>{feedbackItem.upvoteCount}</span>
