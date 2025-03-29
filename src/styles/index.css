@@ -352,10 +352,9 @@ form button span::selection {
 .feedback {
   display: grid;
   grid-template-columns: 40px 85px 6fr 1fr;
-  align-items: center;
+  align-items: start;
   height: 82px;
-  padding-right: 35px;
-  padding-left: 30px;
+  padding: 18px 35px 18px 30px;
   cursor: pointer;
   border-bottom: 1px solid #e4e7eb;
   transition: all 0.2s;
@@ -458,6 +457,7 @@ form button span::selection {
 
 .feedback > p:nth-child(4) {
   font-size: 12px;
+  padding: 15px 0;
   color: #898b92;
   margin-left: auto;
   transition: all 0.2s;
