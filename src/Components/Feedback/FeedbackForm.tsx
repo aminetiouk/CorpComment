@@ -7,6 +7,9 @@ type onAddToListProps = {
 
 export default function FeedbackForm({ onAddToList }: onAddToListProps) {
   const [text, setText] = useState('');
+  const [showValidIndicator, setShowValidIndicator] = useState(false);
+  const [showInvalidIndicator, setShowInvalidIndicator] = useState(false);
+
   const charCount = CHARACTER_LIMIT - text.length;
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
@@ -18,11 +21,25 @@ export default function FeedbackForm({ onAddToList }: onAddToListProps) {
 
   const handleAddToList = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // Basic Validation
+    if (text.includes('#') && text.length >= 5) {
+      setShowValidIndicator(true);
+      setTimeout(() => setShowValidIndicator(false), 3000);
+    } else {
+      setShowInvalidIndicator(true);
+      setTimeout(() => setShowInvalidIndicator(false), 3000);
+      setText('');
+      return;
+    }
     onAddToList(text);
+    setText('');
   };
 
   return (
-    <form onSubmit={handleAddToList} className="form">
+    <form
+      onSubmit={handleAddToList}
+      className={`form ${showValidIndicator ? 'form--valid' : ''} ${showInvalidIndicator ? 'form--invalid' : ''}`}
+    >
       <textarea
         id="feedback-textarea"
         spellCheck={false}
