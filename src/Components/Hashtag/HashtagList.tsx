@@ -1,18 +1,8 @@
-import HashtagItem from '../Hashtag/HashtagItem';
+import React from 'react';
 
 type companyListProps = {
-  companyList: string[];
-  handleSelectCompany: (company: string) => void;
+  children: React.ReactNode;
 };
-export default function HashtagList({
-  companyList,
-  handleSelectCompany
-}: companyListProps) {
-  return (
-    <ul className="hashtags">
-      {companyList.map((company: string) => (
-        <HashtagItem company={company} onSelectCompany={handleSelectCompany} />
-      ))}
-    </ul>
-  );
+export default function HashtagList({ children }: companyListProps) {
+  return <ul className="hashtags">{children}</ul>;
 }
