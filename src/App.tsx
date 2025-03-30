@@ -3,6 +3,7 @@ import Container from './components/Layout/Container';
 import Footer from './components/Layout/Footer';
 import HashtagList from './components/Hashtag/HashtagList';
 import { TFeedback } from './lib/type';
+import HashtagItem from './components/Hashtag/HashtagItem';
 
 function App() {
   const [feedbackItems, setFeedbackItem] = useState<TFeedback[]>([]);
@@ -10,17 +11,25 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [selectCompany, setSelectCompany] = useState('');
 
-  const filterFeedbackItem = useMemo(() => selectCompany
-    ? feedbackItems.filter(
-        feedbackItem => feedbackItem.company === selectCompany
-      )
-    : feedbackItems, [feedbackItems, selectCompany]);
+  const filterFeedbackItem = useMemo(
+    () =>
+      selectCompany
+        ? feedbackItems.filter(
+            feedbackItem => feedbackItem.company === selectCompany
+          )
+        : feedbackItems,
+    [feedbackItems, selectCompany]
+  );
 
-  const companyList = useMemo(() => feedbackItems
-    .map(name => name.company)
-    .filter((company, index, array) => {
-      return array.indexOf(company) === index;
-    }), [feedbackItems]);
+  const companyList = useMemo(
+    () =>
+      feedbackItems
+        .map(name => name.company)
+        .filter((company, index, array) => {
+          return array.indexOf(company) === index;
+        }),
+    [feedbackItems]
+  );
 
   const handleAddToList = async (text: string) => {
     const companyName = text
@@ -91,10 +100,14 @@ function App() {
         handleAddToList={handleAddToList}
       />
 
-      <HashtagList
-        companyList={companyList}
-        handleSelectCompany={handleSelectCompany}
-      />
+      <HashtagList>
+        {companyList.map((company: string) => (
+          <HashtagItem
+            company={company}
+            onSelectCompany={handleSelectCompany}
+          />
+        ))}
+      </HashtagList>
     </div>
   );
 }
