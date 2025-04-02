@@ -1,19 +1,10 @@
 import FeedbackItem from './FeedbackItem';
 import SkeletonLoader from '../SkeletonLoader';
 import ErrorMessage from '../ErrorMessage';
-import { TFeedback } from '../../lib/type';
+import { useFeedbackItemsContext } from '../../lib/hooks';
 
-type FeedbackListProps = {
-  feedbackItems: TFeedback[];
-  isLoading: boolean;
-  errorMessage: string;
-};
-
-export default function FeedbackList({
-  feedbackItems,
-  isLoading,
-  errorMessage
-}: FeedbackListProps) {
+export default function FeedbackList() {
+  const {isLoading, errorMessage, feedbackItems } = useFeedbackItemsContext();
   return (
     <ol className="feedback-list">
       {isLoading && <SkeletonLoader />}
