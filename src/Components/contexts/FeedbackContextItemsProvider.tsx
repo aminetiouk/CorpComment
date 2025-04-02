@@ -1,19 +1,45 @@
 import { createContext, useEffect, useMemo, useState } from 'react';
 import { TFeedback } from '../../lib/type';
 
+type FeedbackContextItemsProviderProps = {
+  children: React.ReactNode;
+};
+
 type TFeedbackItemsContext = {
   isLoading: boolean;
   feedbackItems: TFeedback[];
+  filterFeedbackItem: TFeedback[];
   errorMessage: string;
   companyList: string[];
   handleAddToList: (text: string) => void;
-}
+  handleSelectCompany: (company: string) => void;
+};
 
-export default function FeedbackContextItemsProvider() {
-  const FeedbackItemsContext = createContext<TFeedbackItemsContext | null>(null);
+export const FeedbackItemsContext = createContext<TFeedbackItemsContext | null>(
+  null
+);
+
+export default function FeedbackContextItemsProvider({
+  children
+}: FeedbackContextItemsProviderProps) {
   const [feedbackItems, setFeedbackItems] = useState<TFeedback[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [selectCompany, setSelectCompany] = useState('');
+
+  const filterFeedbackItem = useMemo(
+    () =>
+      selectCompany
+        ? feedbackItems.filter(
+            feedbackItem => feedbackItem.company === selectCompany
+          )
+        : feedbackItems,
+    [feedbackItems, selectCompany]
+  );
+
+  const handleSelectCompany = (company: string) => {
+    setSelectCompany(company);
+  };
   const companyList = useMemo(
     () =>
       feedbackItems
@@ -82,7 +108,11 @@ export default function FeedbackContextItemsProvider() {
         errorMessage,
         companyList,
         handleAddToList,
+        filterFeedbackItem,
+        handleSelectCompany
       }}
-    ></FeedbackItemsContext.Provider>
+    >
+      {children}
+    </FeedbackItemsContext.Provider>
   );
 }
