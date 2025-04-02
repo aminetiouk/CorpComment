@@ -1,8 +1,13 @@
-import React from 'react';
+import { useFeedbackItemsContext } from '../../lib/hooks';
+import HashtagItem from './HashtagItem';
 
-type companyListProps = {
-  children: React.ReactNode;
-};
-export default function HashtagList({ children }: companyListProps) {
-  return <ul className="hashtags">{children}</ul>;
+export default function HashtagList() {
+  const { companyList, handleSelectCompany } = useFeedbackItemsContext();
+  return (
+    <ul className="hashtags">
+      {companyList.map((company: string) => (
+        <HashtagItem company={company} onSelectCompany={handleSelectCompany} />
+      ))}
+    </ul>
+  );
 }
