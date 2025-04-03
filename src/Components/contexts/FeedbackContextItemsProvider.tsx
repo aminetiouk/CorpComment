@@ -1,5 +1,6 @@
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 import { TFeedback } from '../../lib/type';
+import { useFeedbackItem } from '../../lib/hooks';
 
 type FeedbackContextItemsProviderProps = {
   children: React.ReactNode;
@@ -22,9 +23,8 @@ export const FeedbackItemsContext = createContext<TFeedbackItemsContext | null>(
 export default function FeedbackContextItemsProvider({
   children
 }: FeedbackContextItemsProviderProps) {
-  const [feedbackItems, setFeedbackItems] = useState<TFeedback[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const { isLoading, errorMessage, feedbackItems, setFeedbackItems } =
+    useFeedbackItem();
   const [selectCompany, setSelectCompany] = useState('');
 
   const filterFeedbackItem = useMemo(
@@ -77,30 +77,7 @@ export default function FeedbackContextItemsProvider({
       }
     );
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
 
-      try {
-        const response = await fetch(
-          'https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks'
-        );
-
-        if (!response.ok) {
-          throw new Error();
-        }
-
-        const data = await response.json();
-        setFeedbackItems(data.feedbacks);
-      } catch (error) {
-        console.error('Error fetching feedbacks:', error);
-        setErrorMessage(`⚠️ Failed to load data`);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
   return (
     <FeedbackItemsContext.Provider
       value={{
@@ -109,6 +86,7 @@ export default function FeedbackContextItemsProvider({
         companyList,
         handleAddToList,
         filterFeedbackItem,
+        feedbackItems,
         handleSelectCompany
       }}
     >
