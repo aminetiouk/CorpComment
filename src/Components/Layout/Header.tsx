@@ -5,7 +5,8 @@ import PageHeading from '../PageHeading';
 import Pattern from '../Pattern';
 
 export default function Header() {
-  const addItemToList = useFeedbackItemsStore(state => state.addItemToList);
+  const addItemToList = useFeedbackItemsStore((state) => state.addItemToList);
+
   return (
     <header>
       <Pattern />
