@@ -1,29 +1,29 @@
-import { useContext, useEffect, useState } from 'react';
-import { FeedbackItemsContext } from '../components/contexts/FeedbackContextItemsProvider';
-import { TFeedback } from './type';
+import { useContext, useEffect, useState } from "react";
+import { TFeedbackItem } from "../lib/type";
+import { FeedbackItemsContext } from "../components/contexts/FeedbackContextItemsProvider";
 
 export function useFeedbackItemsContext() {
   const context = useContext(FeedbackItemsContext);
   if (!context) {
     throw new Error(
-      'FeedbackItemsContext is not defined in FeedbackList component'
+      "FeedbackItemsContext is not defined in FeedbackList component"
     );
   }
   return context;
 }
 
-export function useFeedbackItem() {
-  const [feedbackItems, setFeedbackItems] = useState<TFeedback[]>([]);
+export function useFeedbackItems() {
+  const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchFeedbackItems = async () => {
       setIsLoading(true);
 
       try {
         const response = await fetch(
-          'https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks'
+          "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
         );
 
         if (!response.ok) {
@@ -33,19 +33,20 @@ export function useFeedbackItem() {
         const data = await response.json();
         setFeedbackItems(data.feedbacks);
       } catch (error) {
-        console.error('Error fetching feedbacks:', error);
-        setErrorMessage(`⚠️ Failed to load data`);
-      } finally {
-        setIsLoading(false);
+        console.error(error)
+        setErrorMessage("Something went wrong. Please try again later.");
       }
+
+      setIsLoading(false);
     };
-    fetchData();
+
+    fetchFeedbackItems();
   }, []);
 
   return {
+    feedbackItems,
     isLoading,
     errorMessage,
-    feedbackItems,
-    setFeedbackItems
-  }
+    setFeedbackItems,
+  };
 }
