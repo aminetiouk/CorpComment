@@ -50,7 +50,7 @@ export default function FeedbackForm({ onAddToList }: onAddToListProps) {
         Enter your feedback here, remember to #hashtag the company
       </label>
       <div>
-        <p>{charCount}</p>
+        <p className='u-italic'>{charCount}</p>
         <button>
           <span>Submit</span>
         </button>
