@@ -1,9 +1,9 @@
 import { BiSolidUpArrow } from 'react-icons/bi';
-import { TFeedback } from '../../lib/type';
+import { TFeedbackItem } from '../../lib/type';
 import { useState } from 'react';
 
 type FeedbackItemProps = {
-  feedbackItem: TFeedback;
+  feedbackItem: TFeedbackItem;
 };
 
 export default function FeedbackItem({ feedbackItem }: FeedbackItemProps) {
@@ -32,7 +32,7 @@ export default function FeedbackItem({ feedbackItem }: FeedbackItemProps) {
         <p>{feedbackItem.company}</p>
         <p>{feedbackItem.text}</p>
       </div>
-      <p>{feedbackItem.daysAgo} d</p>
+      <p>{feedbackItem.daysAgo === 0 ? "NEW" : `${feedbackItem.daysAgo}d`}</p>
     </li>
   );
 }
