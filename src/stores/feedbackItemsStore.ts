@@ -1,42 +1,53 @@
 import { create } from 'zustand';
+import { TFeedbackItem } from '../lib/type';
 
-export const useFeedbackItemsStore = create((set, get) => ({
+type Store = {
+  feedbackItems: TFeedbackItem[];
+  isLoading: boolean;
+  errorMessage: string;
+  selectedCompany: string;
+  companyList: string[];
+  getFilteredFeedbackItems: () => TFeedbackItem[];
+  addItemToList: (text: string) => Promise<void>;
+  selectCompany: (company: string) => void;
+  fetchFeedbackItems: () => Promise<void>;
+};
+
+export const useFeedbackItemsStore = create<Store>((set, get) => ({
   feedbackItems: [],
   isLoading: false,
   errorMessage: '',
   selectedCompany: '',
-  getCompanyList: () => {
-    return get()
-      .feedbackItems.map(name => name.company)
-      .filter((company, index, array) => {
-        return array.indexOf(company) === index;
-      });
-  },
+  companyList: [],
+
   getFilteredFeedbackItems: () => {
     const state = get();
 
     return state.selectedCompany
       ? state.feedbackItems.filter(
-          feedbackItem => feedbackItem.company === state.selectedCompany
+          (feedbackItem) => feedbackItem.company === state.selectedCompany
         )
       : state.feedbackItems;
   },
+
   addItemToList: async (text: string) => {
     const companyName = text
       .split(' ')
       .find(word => word.includes('#'))!
       .substring(1);
 
-    const newItem: TFeedback = {
+    const newItem: TFeedbackItem = {
       id: new Date().getTime(),
-      company: companyName,
-      badgeLetter: companyName.substring(0, 1).toUpperCase(),
-      daysAgo: 0,
+      text: text,
       upvoteCount: 0,
-      text: text
+      daysAgo: 0,
+      company: companyName,
+      badgeLetter: companyName.substring(0, 1).toUpperCase()
     };
+
     set(state => ({
-      feedbackItems: [...state.feedbackItems, newItem]
+      feedbackItems: [...state.feedbackItems, newItem],
+      companyList: Array.from(new Set([...state.companyList, companyName])) // Update company list
     }));
 
     await fetch(
@@ -51,14 +62,17 @@ export const useFeedbackItemsStore = create((set, get) => ({
       }
     );
   },
+
   selectCompany: (company: string) => {
     set(() => ({
       selectedCompany: company
     }));
   },
-  fetchData: async () => {
+
+  fetchFeedbackItems: async () => {
     set(() => ({
-      isLoading: true
+      isLoading: true,
+      errorMessage: ''
     }));
 
     try {
@@ -67,17 +81,24 @@ export const useFeedbackItemsStore = create((set, get) => ({
       );
 
       if (!response.ok) {
-        throw new Error();
+        throw new Error('Failed to fetch feedback items');
       }
 
       const data = await response.json();
-      set(() => ({
-        feedbackItems: data.feedbacks
-      }));
+      const feedbacks: TFeedbackItem[] = data.feedbacks;
+      set(() => {
+        const uniqueCompanies = Array.from(
+          new Set(data.feedbacks.map((item: TFeedbackItem) => item.company))
+        );
+        return {
+          feedbackItems: feedbacks,
+          companyList: uniqueCompanies as string[]
+        };
+      });
     } catch (error) {
-      console.error('Error fetching feedbacks:', error);
+      console.error(error);
       set(() => ({
-        errorMessage: '⚠️ Failed to load data'
+        errorMessage: 'Something went wrong. Please try again later.'
       }));
     } finally {
       set(() => ({
