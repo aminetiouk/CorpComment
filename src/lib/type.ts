@@ -1,4 +1,4 @@
-export type TFeedback = {
+export type TFeedbackItem = {
   id: number;
   company: string;
   badgeLetter: string;
