@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 function App() {
   const fetchFeedbackItems = useFeedbackItemsStore(
-    state => state.fetchFeedbackItems
+    (state) => state.fetchFeedbackItems
   );
 
   useEffect(() => {
